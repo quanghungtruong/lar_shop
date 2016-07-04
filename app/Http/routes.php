@@ -14,8 +14,11 @@
  * Admin
  **/
 
-Route::get('/admin',function(){
-    return view('admin');
+Route::group(['middleware'=>'web','namespage'=>'admin','prefix'=>'admin'],function(){
+   Route::get('/',function(){
+       return view('admin.index');
+   });
+    Route::get('/widgets',['as'=>'widgets','uses'=>'WidgetsController@getIndex']);
 });
 
 /*
